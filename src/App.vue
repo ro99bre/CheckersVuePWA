@@ -17,6 +17,9 @@
             <li class="nav-item active">
               <router-link class="nav-link" to="/tutorial">Tutorial</router-link>
             </li>
+            <li class="nav-item active">
+              <router-link class="nav-link" to="/game">Game</router-link>
+            </li>
           </ul>
         </div>
       </nav>
