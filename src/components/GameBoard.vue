@@ -55,6 +55,8 @@ export default {
         return {
             gameBoard: new GameBoard(),
             websocket: new WebSocket(WebsocketUrl),
+            //applicationHost: 'http://localhost:9000',
+            applicationHost: 'https://webapplications-group06-ws2122.herokuapp.com',
             rows: 8,
             cols: 8,
             scol: -1,
@@ -64,20 +66,20 @@ export default {
 
     methods: {
         getTile(row, col) {
-            //var path = '../assets/game/'
-            var path = 'http://localhost:9000/assets/images/game/'
+            var path = '/assets/images/game/'
+            var assetsUrl = this.applicationHost + path
             //Non Empty Cell
             if (this.gameBoard.game[row][col][1] !== undefined) {
                 //Queen Piece
                 if (this.gameBoard.game[row][col][2] === true) {
-                    return path + this.gameBoard.game[row][col][0] + this.gameBoard.game[row][col][1] + 'queen' + '.jpg';
+                    return assetsUrl + this.gameBoard.game[row][col][0] + this.gameBoard.game[row][col][1] + 'queen' + '.jpg';
                     //Normal Piece
                 } else {
-                    return path + this.gameBoard.game[row][col][0] + this.gameBoard.game[row][col][1] + '.jpg';
+                    return assetsUrl + this.gameBoard.game[row][col][0] + this.gameBoard.game[row][col][1] + '.jpg';
                 }
                 //Empty Cell
             } else {
-                return path + this.gameBoard.game[row][col][0] + '.jpg';
+                return assetsUrl + this.gameBoard.game[row][col][0] + '.jpg';
             }
         },
 
@@ -88,7 +90,7 @@ export default {
             } else {
                 let options = {
                     headers: { "Content-Type": "application/json" },
-                    url: 'http://localhost:9000/move/sx=' + this.scol + '/sy=' + this.srow + '/dx=' + col + '/dy=' + row,
+                    url: this.applicationHost + '/move/sx=' + this.scol + '/sy=' + this.srow + '/dx=' + col + '/dy=' + row,
                     method: "get",
                 };
 
@@ -120,7 +122,7 @@ export default {
         initGame: async function () {
             let options = {
                 headers: { "Content-Type": "application/json" },
-                url: "http://localhost:9000/jsonGame",
+                url: this.applicationHost + '/jsonGame',
                 method: "get",
             };
 
