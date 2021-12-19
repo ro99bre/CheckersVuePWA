@@ -1,20 +1,12 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <table class="GameBoard">
-                    <tr v-for="row in rows" :key="row">
-                        <td v-for="col in cols" :key="col">
-                            <img v-bind:src="getTile(row-1,col-1)" class="field" v-on:click="moveTile(row-1, col-1)" v-bind:id="'field-' + row + '-' + col"/>
-                            <!--<img src="../assets/game/black.jpg" class="field" v-on:click="test()" v-bind:id="'field-' + row + '-' + col"/>-->
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-    </div>
+    <table class="GameBoard">
+        <tr v-for="row in rows" :key="row">
+            <td v-for="col in cols" :key="col">
+                <img v-bind:src="getTile(row-1,col-1)" class="field" v-on:click="moveTile(row-1, col-1)" v-bind:id="'field-' + row + '-' + col"/>
+                <!--<img src="../assets/game/black.jpg" class="field" v-on:click="test()" v-bind:id="'field-' + row + '-' + col"/>-->
+            </td>
+        </tr>
+    </table>
 </template>
 
 <script>
