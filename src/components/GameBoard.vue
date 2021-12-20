@@ -85,7 +85,7 @@ export default {
             } else {
                 let options = {
                     headers: { "Content-Type": "application/json" },
-                    url: 'http://localhost:8080/api/move/sx=' + this.scol + '/sy=' + this.srow + '/dx=' + col + '/dy=' + row,
+                    url: 'http://localhost:9000/move/sx=' + this.scol + '/sy=' + this.srow + '/dx=' + col + '/dy=' + row,
                     method: "get",
                 };
 
@@ -117,12 +117,11 @@ export default {
         initGame: async function () {
             let options = {
                 headers: { "Content-Type": "application/json" },
-                url: "http://localhost:8080/api/jsonGame",
+                url: "http://localhost:9000/jsonGame",
                 method: "get",
             };
 
             let result = await axios(options).then(response => response.data);
-            //console.log(result);
             this.gameBoard = new GameBoard();
             this.gameBoard.fill(result);
         },
@@ -156,7 +155,6 @@ export default {
     created() {
         //Initial loading of Game
         this.initGame();
-
         //Connecting to WebSocket
         this.connectWebSocket();
     }

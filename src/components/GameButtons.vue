@@ -20,7 +20,7 @@ export default {
         newGame: function () {
             let options = {
                 headers: { "Content-Type": "application/json" },
-                url: 'http://localhost:8080/api/newGame',
+                url: 'http://localhost:9000/newGame',
                 method: "get",
             };
             console.log(options.url);
@@ -30,7 +30,7 @@ export default {
         redo: function () {
             let options = {
                 headers: { "Content-Type": "application/json" },
-                url: 'http://localhost:8080/api/redo',
+                url: 'http://localhost:9000/redo',
                 method: "get",
             };
             console.log(options.url);
@@ -40,7 +40,7 @@ export default {
         undo: function () {
             let options = {
                 headers: { "Content-Type": "application/json" },
-                url: 'http://localhost:8080/api/undo',
+                url: 'http://localhost:9000/undo',
                 method: "get",
             };
             console.log(options.url);
