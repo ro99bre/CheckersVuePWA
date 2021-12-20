@@ -51,6 +51,7 @@ export default {
     data: function () {
         return {
             gameBoard: new GameBoard(),
+            websocket: new WebSocket("ws://localhost:9000/websocket"),
             rows: 8,
             cols: 8,
             scol: -1,
@@ -96,10 +97,14 @@ export default {
             }
         },
 
-        getRequest: async function (options) {
-            let result = await axios(options).then(response => response.data);
-            //console.log(result);
-            this.updateGameBoard(result);
+//        getRequest: async function (options) {
+//            let result = await axios(options).then(response => response.data);
+//            console.log(result);
+//            //this.updateGameBoard(result);
+//        },
+
+        getRequest: function (options) {
+            axios(options).then(response => response.data);
         },
 
         updateGameBoard (jsonData) {
@@ -109,49 +114,52 @@ export default {
             //console.log(this.gameBoard)
         },
 
-//        connectWebSocket() {
-//            var websocket = new WebSocket("ws://localhost:9000/websocket");
-//            websocket.setTimeout;
-//
-//            websocket.onopen = function () {
-//                console.log("Connected to Websocket");
-//            }
-//
-//            websocket.onclose = function () {
-//                console.log('Connection with Websocket Closed!');
-//            };
-//
-//            websocket.onerror = function (error) {
-//                console.log('Error in Websocket Occured: ' + error);
-//            };
-//
-//            websocket.onmessage = function (e) {
-//                if (typeof e.data === "string") {
-//                    let json = JSON.parse(e.data);
-//
-//                    this.updateGameBoard(json);
-//                    console.log(this.gameBoard)
-//                    this.Parent.gameBoard = new GameBoard();
-//                    this.Parent.gameBoard.fill(json)
-//                    console.log(this.gameBoard)
-//                }
-//            };
-//        }
+        initGame: async function () {
+            let options = {
+                headers: { "Content-Type": "application/json" },
+                url: "http://localhost:8080/api/jsonGame",
+                method: "get",
+            };
+
+            let result = await axios(options).then(response => response.data);
+            //console.log(result);
+            this.gameBoard = new GameBoard();
+            this.gameBoard.fill(result);
+        },
+
+        connectWebSocket() {
+            //var websocket = new WebSocket("ws://localhost:9000/websocket");
+            this.websocket.setTimeout;
+
+            this.websocket.onopen = () => {
+                console.log("Connected to Websocket");
+            }
+
+            this.websocket.onclose = () => {
+                console.log('Connection with Websocket Closed!');
+            };
+
+            this.websocket.onerror = (error) => {
+                console.log('Error in Websocket Occured: ' + error);
+            };
+
+            this.websocket.onmessage = (e) => {
+                if (typeof e.data === "string") {
+                    let json = JSON.parse(e.data);
+
+                    this.updateGameBoard(json);
+                }
+            };
+        }
     },
 
     created() {
-        //this.connectWebSocket();
+        //Initial loading of Game
+        this.initGame();
 
-        let options = {
-            headers: { "Content-Type": "application/json" },
-            url: "http://localhost:8080/api/jsonGame",
-            method: "get",
-        };
-
-        this.getRequest(options);
+        //Connecting to WebSocket
+        this.connectWebSocket();
     }
 }
 
 </script>
-
-
