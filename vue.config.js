@@ -1,13 +1,5 @@
 module.exports = {
-    devServer: {
-        proxy: {
-            '/api': {
-                target: 'http://localhost:9000',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/api': ''
-                }
-            }
-        }
-    }
+    publicPath: process.env.NODE_ENV === 'production'
+        ? '/CheckersVuePWA/'
+        : '/'
 }
