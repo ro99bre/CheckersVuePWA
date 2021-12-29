@@ -3,10 +3,8 @@ name: Build and Deploy Checkers PWA
 on: [push]
 
 jobs:
-  build:
-
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -14,13 +12,16 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16.x'
-      - name: Lint and Build Code
-        run: |
-          npm ci
-          npm run lint --if-present
-          npm run build --if-present
+      - name: Setup npm packages
+        run: npm ci
+      - name: Lint Code
+        run: npm run lint --if-present
+      - name: Build Code
+        run: npm run build --if-present
       - name: Deploy to Github Page
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
+          git-config-name: Github Action
+          commit-message: "Deployment from Job-Nr ${{ github.run_number }} triggered by Commit ${{ github.sha }}"
           branch: production
           folder: dist
