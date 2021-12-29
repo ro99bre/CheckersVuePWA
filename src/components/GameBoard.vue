@@ -49,9 +49,12 @@ class GameBoard {
 export default {
     name: 'GameBoard',
     data: function () {
+        var path = '/websocket'
+        //var WebsocketUrl = "ws://localhost:9000" + path
+        var WebsocketUrl = "wss://webapplications-group06-ws2122.herokuapp.com" + path
         return {
             gameBoard: new GameBoard(),
-            websocket: new WebSocket("ws://localhost:9000/websocket"),
+            websocket: new WebSocket(WebsocketUrl),
             rows: 8,
             cols: 8,
             scol: -1,
@@ -127,7 +130,6 @@ export default {
         },
 
         connectWebSocket() {
-            //var websocket = new WebSocket("ws://localhost:9000/websocket");
             this.websocket.setTimeout;
 
             this.websocket.onopen = () => {
