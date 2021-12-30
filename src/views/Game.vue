@@ -20,6 +20,14 @@ import GameBoard from '@/components/GameBoard.vue'
 
 export default {
   name: 'Game',
+
+  data: function () {
+    return {
+      //applicationHost: 'http://localhost:9000'
+      applicationHost: 'https://webapplications-group06-ws2122.herokuapp.com'
+    }
+  },
+
   components: {
     GameButtons,
     GameBoard

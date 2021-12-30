@@ -48,6 +48,7 @@ class GameBoard {
 
 export default {
     name: 'GameBoard',
+
     data: function () {
         var path = '/websocket'
         //var WebsocketUrl = "ws://localhost:9000" + path
@@ -55,8 +56,6 @@ export default {
         return {
             gameBoard: new GameBoard(),
             websocket: new WebSocket(WebsocketUrl),
-            //applicationHost: 'http://localhost:9000',
-            applicationHost: 'https://webapplications-group06-ws2122.herokuapp.com',
             rows: 8,
             cols: 8,
             scol: -1,
@@ -67,7 +66,7 @@ export default {
     methods: {
         getTile(row, col) {
             var path = '/assets/images/game/'
-            var assetsUrl = this.applicationHost + path
+            var assetsUrl = this.$parent.applicationHost + path
             //Non Empty Cell
             if (this.gameBoard.game[row][col][1] !== undefined) {
                 //Queen Piece
@@ -90,7 +89,7 @@ export default {
             } else {
                 let options = {
                     headers: { "Content-Type": "application/json" },
-                    url: this.applicationHost + '/move/sx=' + this.scol + '/sy=' + this.srow + '/dx=' + col + '/dy=' + row,
+                    url: this.$parent.applicationHost + '/move/sx=' + this.scol + '/sy=' + this.srow + '/dx=' + col + '/dy=' + row,
                     method: "get",
                 };
 
@@ -122,7 +121,7 @@ export default {
         initGame: async function () {
             let options = {
                 headers: { "Content-Type": "application/json" },
-                url: this.applicationHost + '/jsonGame',
+                url: this.$parent.applicationHost + '/jsonGame',
                 method: "get",
             };
 

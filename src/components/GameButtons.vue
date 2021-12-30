@@ -15,19 +15,13 @@ import axios from "axios";
 
 export default {
     name: 'GameButtons',
-    data: function () {
-        return {
-            //applicationHost: 'http://localhost:9000',           
-            applicationHost: 'https://webapplications-group06-ws2122.herokuapp.com'
-        }
-    },
 
     methods: {
 
         newGame: function () {
             let options = {
                 headers: { "Content-Type": "application/json" },
-                url: this.applicationHost + '/newGame',
+                url: this.$parent.applicationHost + '/newGame',
                 method: "get",
             };
             console.log(options.url);
@@ -37,7 +31,7 @@ export default {
         redo: function () {
             let options = {
                 headers: { "Content-Type": "application/json" },
-                url: this.applicationHost + '/redo',
+                url: this.$parent.applicationHost + '/redo',
                 method: "get",
             };
             console.log(options.url);
@@ -47,7 +41,7 @@ export default {
         undo: function () {
             let options = {
                 headers: { "Content-Type": "application/json" },
-                url: this.applicationHost + '/undo',
+                url: this.$parent.applicationHost + '/undo',
                 method: "get",
             };
             console.log(options.url);
