@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/CheckersVuePWA/precache-manifest.836726ddac374984a65d04459b862f7c.js"
+  "/CheckersVuePWA/precache-manifest.55a064ae366d893d172efedd70866e07.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "checkers-vue-spa"});
