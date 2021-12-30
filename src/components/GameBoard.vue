@@ -51,8 +51,7 @@ export default {
 
     data: function () {
         var path = '/websocket'
-        //var WebsocketUrl = "ws://localhost:9000" + path
-        var WebsocketUrl = "wss://webapplications-group06-ws2122.herokuapp.com" + path
+        var WebsocketUrl = this.$parent.websocketServer + path
         return {
             gameBoard: new GameBoard(),
             websocket: new WebSocket(WebsocketUrl),

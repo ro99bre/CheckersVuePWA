@@ -23,8 +23,11 @@ export default {
 
   data: function () {
     return {
-      //applicationHost: 'http://localhost:9000'
-      applicationHost: 'https://webapplications-group06-ws2122.herokuapp.com'
+      //applicationHost: 'http://localhost:9000',
+      applicationHost: 'https://webapplications-group06-ws2122.herokuapp.com',
+      //websocketServer: 'ws://localhost:9000'
+      websocketServer: 'wss://webapplications-group06-ws2122.herokuapp.com'
+
     }
   },
 
