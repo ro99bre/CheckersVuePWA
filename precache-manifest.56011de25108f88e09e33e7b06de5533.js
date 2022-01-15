@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "08a46c10b73199460910",
-    "url": "/CheckersVuePWA/css/chunk-253d1c6f.f11174be.css"
-  },
-  {
     "revision": "946c70455c767acae9d5",
     "url": "/CheckersVuePWA/css/chunk-278997fb.c2447c90.css"
+  },
+  {
+    "revision": "8af70ea6d70475aaaa0b",
+    "url": "/CheckersVuePWA/css/chunk-3a202e14.5a4f4c2b.css"
   },
   {
     "revision": "2b54be51353bb1dc3d8b",
@@ -24,20 +24,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/CheckersVuePWA/img/chessboard.0719b340.jpg"
   },
   {
-    "revision": "cca818b9d93667b4ec413c3d1f8687c2",
+    "revision": "3e5df2d13af11099591af2d49c86f42f",
     "url": "/CheckersVuePWA/index.html"
   },
   {
-    "revision": "94c84cff56ae77454a99",
-    "url": "/CheckersVuePWA/js/app.46c3bddf.js"
-  },
-  {
-    "revision": "08a46c10b73199460910",
-    "url": "/CheckersVuePWA/js/chunk-253d1c6f.fa334506.js"
+    "revision": "3383cd679f71b4881d04",
+    "url": "/CheckersVuePWA/js/app.9e274a28.js"
   },
   {
     "revision": "946c70455c767acae9d5",
     "url": "/CheckersVuePWA/js/chunk-278997fb.30f2ea5d.js"
+  },
+  {
+    "revision": "8af70ea6d70475aaaa0b",
+    "url": "/CheckersVuePWA/js/chunk-3a202e14.385c6d19.js"
   },
   {
     "revision": "2b54be51353bb1dc3d8b",
