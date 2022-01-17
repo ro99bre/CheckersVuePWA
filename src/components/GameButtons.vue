@@ -4,10 +4,12 @@
         <button v-on:click="undo()" type="button" class="btn btn-danger" id="undo-button">Undo</button>
         <button v-on:click="redo()" type="button" class="btn btn-secondary" id="redo-button">Redo</button>
         <button v-on:click="newGame()" type="button" class="btn btn-success" id="redo-button">New Game</button>
+        <button v-on:click="logout()" type="button" class="btn btn-lin" id="logout-button"> Logout </button>
         <!--<button type="button" class="btn btn-info" data-toggle="modal" data-target="#loadModal">Load</button>-->
         <!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#saveModal">Save</button>-->
+        
         <div> Player {{ user.email }}!</div>
-        <button v-on:click="logout()" type="button"> LogOut </button>
+        
       </div>
     </div>
 </template>
@@ -34,12 +36,7 @@ export default {
         });
     },
     methods: {
-        logout: function () {
-            const auth = getAuth();
-            signOut(auth).then(() => {
-                this.$router.replace("login");
-            });
-        },
+       
         newGame: function () {
             let options = {
                 headers: { "Content-Type": "application/json" },
@@ -68,6 +65,12 @@ export default {
             };
             console.log(options.url);
             axios(options).then(response => response.data);
+        }, 
+        logout: function () {
+            const auth = getAuth();
+            signOut(auth).then(() => {
+                this.$router.replace("login");
+            });
         }
     }
 }

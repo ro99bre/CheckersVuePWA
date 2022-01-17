@@ -169,17 +169,6 @@ export default {
     };
   },
   methods: {
-    /*
-    async onSubmit()  {
-      const auth = getAuth();
-      try {
-        await signInWithEmailAndPassword(auth, this.user.email, this.user.password).then(() => {
-        this.$router.replace('/game')
-       })
-      } catch (e) {
-        alert(e);
-      }
-    },*/
     onSubmit: function () {
       const auth = getAuth();
       signInWithEmailAndPassword(auth, this.user.email, this.user.password).then(

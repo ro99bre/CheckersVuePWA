@@ -27,32 +27,3 @@
       <router-view/>
   </div>
 </template>
-
-<script>
-import { getAuth, onAuthStateChanged, signOut} from "firebase/auth";
-
-export default {
-  data () {
-    return {
-      user: null,
-    };
-  },
-  created() {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        this.user = user;
-      } else {
-        this.$router.replace("login");
-      }
-    });
-  },
-  methods: {
-    logout: function () {
-            const auth = getAuth();
-            signOut(auth).then(() => {
-                this.$router.replace("login");
-            });
-        },
-  }
-}

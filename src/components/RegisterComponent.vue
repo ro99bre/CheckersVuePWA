@@ -183,7 +183,7 @@ export default {
         this.$router.push("/game")
       })
       .catch((err) => {
-         console.log(err);
+         alert(err);
       });
     },
   }
