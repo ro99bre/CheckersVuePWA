@@ -28,7 +28,7 @@ const routes = [
       return import('../views/Game.vue')
     },
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     }
   },
   {
@@ -39,10 +39,7 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../components/LoginComponent.vue'),
-    meta: {
-      requiresUnAuth: true
-    }
+    component: () => import('../components/LoginComponent.vue')
   }
 ]
 
@@ -53,12 +50,13 @@ const router = new VueRouter({
 router.beforeEach(async (to, from, next) => {
   const currentUser = getAuth().currentUser;
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-  const requiresUnauth = to.matched.some(record => record.meta.requiresUnauth)
 
-
-  if (requiresAuth && !currentUser) next('/login')
-  else if (requiresUnauth && currentUser) next('/')
-  else next()
+  if (requiresAuth && !currentUser) {
+    alert("You need to login first!");
+    next('login');
+  }
+  else if (!requiresAuth && currentUser) next('game');
+  else next();
 })
 
-export default router
+export default router;

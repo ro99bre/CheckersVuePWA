@@ -166,27 +166,36 @@ export default {
         email: '',
         password: ''
       },
-      email: "",
-      password: "",
     };
   },
   methods: {
+    /*
     async onSubmit()  {
       const auth = getAuth();
       try {
         await signInWithEmailAndPassword(auth, this.user.email, this.user.password).then(() => {
-        console.log(auth.current);
-        this.$router.push('/game')
+        this.$router.replace('/game')
        })
       } catch (e) {
         alert(e);
       }
+    },*/
+    onSubmit: function () {
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, this.user.email, this.user.password).then(
+        () => {
+          this.$router.replace("game");
+        },
+        (err) => {
+          alert(err);
+        }
+      );
     },
     googleLogin() {
         const provider = new GoogleAuthProvider();
         const auth = getAuth();
         signInWithPopup(auth, provider).then(() => {
-            this.$router.push('/game')
+            this.$router.replace('/game')
         })
         .catch((err) => {
             alert(err);

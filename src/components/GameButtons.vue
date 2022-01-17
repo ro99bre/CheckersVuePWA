@@ -6,50 +6,41 @@
         <button v-on:click="newGame()" type="button" class="btn btn-success" id="redo-button">New Game</button>
         <!--<button type="button" class="btn btn-info" data-toggle="modal" data-target="#loadModal">Load</button>-->
         <!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#saveModal">Save</button>-->
-        <div> Player {{ user.name }}!</div>
+        <div> Player {{ user.email }}!</div>
+        <button v-on:click="logout()" type="button"> LogOut </button>
       </div>
     </div>
 </template>
 
 <script>
 import axios from "axios";
-import { getAuth, signOut } from "firebase/auth"
-import { useAuthState } from "@/firebaseinit.js"
-//import firebase from "firebase/app"
-
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 
 export default {
     name: 'GameButtons',
-    /*
-    created() {
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                this.user = user;
-            } else {
-                this.user = '';
-            }
-        });
-    }, */
-    data () {
+    data() {
         return {
-            user: ''
+            user: null,
         };
     },
-    setup() {
-        const { user } = useAuthState()
-        const auth = getAuth()
-        const signOutUser = async () => {
-        try {
-            await signOut(auth)
-            this.$router.push('/login')
-        } catch (e) {
-            alert(e.message)
+    created() {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log(user);
+            this.user = user;
+        } else {
+            this.$router.replace("login");
         }
-        }
-        return { user, signOutUser }
+        });
     },
     methods: {
-        
+        logout: function () {
+            const auth = getAuth();
+            signOut(auth).then(() => {
+                this.$router.replace("login");
+            });
+        },
         newGame: function () {
             let options = {
                 headers: { "Content-Type": "application/json" },
@@ -81,5 +72,4 @@ export default {
         }
     }
 }
-
 </script>

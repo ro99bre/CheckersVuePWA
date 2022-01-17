@@ -157,7 +157,6 @@
 </style>
 
 <script>
-//import firebase from "firebase/auth";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth"
 
 export default {
