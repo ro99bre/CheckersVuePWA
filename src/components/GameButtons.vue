@@ -27,7 +27,6 @@ export default {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
         if (user) {
-            console.log(user);
             this.user = user;
         } else {
             this.$router.replace("login");

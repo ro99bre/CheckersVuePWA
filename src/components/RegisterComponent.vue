@@ -180,12 +180,12 @@ export default {
           email: '',
           password: ''
         }
-        this.$router.replace("/game")
+        this.$router.push("/game")
       })
       .catch((err) => {
          console.log(err);
       });
-    }
+    },
   }
 };
 </script>
