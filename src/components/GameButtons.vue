@@ -6,18 +6,50 @@
         <button v-on:click="newGame()" type="button" class="btn btn-success" id="redo-button">New Game</button>
         <!--<button type="button" class="btn btn-info" data-toggle="modal" data-target="#loadModal">Load</button>-->
         <!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#saveModal">Save</button>-->
+        <div> Player {{ user.name }}!</div>
       </div>
     </div>
 </template>
 
 <script>
 import axios from "axios";
+import { getAuth, signOut } from "firebase/auth"
+import { useAuthState } from "@/firebaseinit.js"
+//import firebase from "firebase/app"
+
 
 export default {
     name: 'GameButtons',
-
+    /*
+    created() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.user = user;
+            } else {
+                this.user = '';
+            }
+        });
+    }, */
+    data () {
+        return {
+            user: ''
+        };
+    },
+    setup() {
+        const { user } = useAuthState()
+        const auth = getAuth()
+        const signOutUser = async () => {
+        try {
+            await signOut(auth)
+            this.$router.push('/login')
+        } catch (e) {
+            alert(e.message)
+        }
+        }
+        return { user, signOutUser }
+    },
     methods: {
-
+        
         newGame: function () {
             let options = {
                 headers: { "Content-Type": "application/json" },
